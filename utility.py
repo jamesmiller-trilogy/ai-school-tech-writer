@@ -1,9 +1,9 @@
 import os
 import base64
 from langchain_openai import ChatOpenAI
-from langchain_core.output_parsers.string import StringOutputParser
+from langchain_core.output_parsers.string import StrOutputParser
 
-def format_data_for_openai(diffs, readme_content, commit_messages):
+def format_data_for_openai(diffs, readme_content.content, commit_messages):
     prompt = None
 
     # Combine the changes into a string with clear delineation.
@@ -42,8 +42,8 @@ def call_openai(prompt):
             {"role": "user", "content": prompt}
         ]
 
-        reponse = client.invoke(input=messages)
-        parser = StringOutputParser()
+        response = client.invoke(input=messages)
+        parser = StrOutputParser()
         content = parser.invoke(input=response)
 
         return content
